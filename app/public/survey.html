@@ -1,0 +1,170 @@
+<html>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <head>
+        
+        <div class="modal fade" id="match-found-modal-center" tabindex="-1" role="dialog" aria-labelledby="match-found-modal-center">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="match-found-modal-title">Match found!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id='match-found-text'>{name_goes_here} is your new best friend!</p>
+                        <img src='' class='img-thumbnail' id='match-image'>
+                        <button type='button' class='btn btn-primary btn-block' data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='jumbotron'>
+                <h1>Best Friend Survey:</h1>
+                <form action='/api/friends' method='POST' id='friend-survey'>
+                    <p><label for='friend-name'>Enter your name:</label>
+                    <input type='text' name='name' id='friend-name'></p>
+                    <p><label for='friend-photo'>Link to an image of you:</label>
+                    <input type='text' name='photo' id='friend-photo'></p>
+                    <h3>Question 1</h3>
+                    <P>Your mind is always buzzing with unexplored ideas and plans.</P>
+                    <select name="one" id="select-one">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 2</h3>
+                    <P>Generally speaking, you rely more on your experience than your imagination.</P>
+                    <select name="two" id="select-two">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 3</h3>
+                    <P>You find it easy to stay relaxed and focused even when there is some pressure.</P>
+                    <select name="three" id="select-three">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 4</h3>
+                    <P>You rarely do something just out of sheer curiosity.</P>
+                    <select name="four" id="select-four">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 5</h3>
+                    <P>People can rarely upset you.</P>
+                    <select name="five" id="select-five">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 6</h3>
+                    <P>It is often difficult for you to relate to other people’s feelings.</P>
+                    <select name="six" id="select-six">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 7</h3>
+                    <P>In a discussion, truth should be more important than people’s sensitivities.</P>
+                    <select name="seven" id="select-seven">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 8</h3>
+                    <P>You rarely get carried away by fantasies and ideas.</P>
+                    <select name="eight" id="select-eight">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 9</h3>
+                    <P>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</P>
+                    <select name="nine" id="select-nine">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <h3>Question 10</h3>
+                    <P>You feel more energetic after spending time with a group of people.</P>
+                    <select name="ten" id="select-ten">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1-Strongly Disagree</option>
+                        <option value="2">2-Disagree</option>
+                        <option value="3">3-Neutral</option>
+                        <option value="4">4-Agree</option>
+                        <option value="5">5-Strongly Agree</option>
+                    </select>
+                    <p>
+                        <br><button id='send-survey' type='submit' class='btn-lg btn-primary btn-block' value='submit'>SUBMIT</button>
+                    </p>
+                </form>
+            </div>
+            <div class='col'>
+                <a href='../../api/friends'>Friend List API</a>
+            </div>
+        </div>
+        <script>
+            $(function(){
+                $('#friend-survey').submit(function(e) {
+                    e.preventDefault();
+                    $.post({
+                        type: 'POST',
+                        url: $(this).attr('action'),
+                        data: {
+                            name: $('#friend-name').val(),
+                            photo: $('#friend-photo').val(),
+                            scores: $.makeArray($('select').map((i, element) => $(element).val()))
+                        },
+                        success: (data) => {
+                            console.log('Client success!', data);
+                            $('#match-found-modal-center').modal();
+                            $('#match-image').attr('src', data.photo);
+                            $('#match-found-text').text((i, str) => str.replace('{name_goes_here}', data.name));
+                            console.log('test', $('#match-found-modal-center'));
+                        }
+                    });
+                });
+            });
+            
+        </script>
+    </body>
+</html>
